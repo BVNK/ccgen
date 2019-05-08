@@ -17,7 +17,7 @@ func Generate() string {
 // Returns random card type
 // @todo: consider other way to limit highest type
 func getRandomCardType() CardType {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 	randType := rand.Intn(int(Mir))
 
 	if randType == 0 {
@@ -59,14 +59,14 @@ func (t CardType) ValidLength(l int) bool {
 
 // Returns random card prefix among valid for the card type
 func (t CardType) getRandomCardPrefix() string {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 
 	return cardPrefix[t][rand.Intn(len(cardPrefix[t]))]
 }
 
 // Returns random card length among valid for the card type
 func (t CardType) getRandomValidLength() int {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 	return cardLength[t][rand.Intn(len(cardLength[t]))]
 }
 
@@ -88,7 +88,7 @@ func checkLuhn(cnumber string) bool {
 // generates the rest of the digits after the card prefix
 // leaving the last position for the check digit
 func completeDigits(bin string, l int) string {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 
 	randomNumberLength := l - (len(bin) + 1)
 
